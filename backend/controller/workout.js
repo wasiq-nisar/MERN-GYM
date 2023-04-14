@@ -31,7 +31,7 @@ const getSingleWorkout = async(req, res)=>{
 
 const addWorkout = async (req, res) => {
     const {title, load, reps} = req.body
-  
+
     // add to the database
     try {
       const workout = await Workout.create({ title, load, reps })
