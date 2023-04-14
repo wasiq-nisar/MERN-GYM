@@ -46,9 +46,9 @@ const deleteWorkout = async(req,res) =>{
     try {
         const workout = await Workout.findOneAndDelete({_id: workoutId});
         if(!workout){
-            res.status(404).json({msg: `No task with ID: ${workoutId}`});
+            res.status(404).json({msg: `No workout with ID: ${workoutId}`});
         }
-        res.status(200).json({workout: null, status: 'Success'});
+        res.status(200).json(workout);
     } catch (error) {
         res.status(400).json({msg: error.message});
     }
