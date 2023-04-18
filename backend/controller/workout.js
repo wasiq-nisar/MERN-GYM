@@ -3,7 +3,8 @@ const Workout = require('../models/WorkoutModel');
 
 const getAllWorkouts = async(req,res) =>{
     try {
-        const workouts = await Workout.find({}).sort({createdAt: -1})
+        const user_id = req.user._id;
+        const workouts = await Workout.find({ user_id }).sort({createdAt: -1})
         //sort({createdAt: -1}) will sort by createdAt in descending order
         res.status(200).json(workouts);    
     } catch (error) {
@@ -34,7 +35,9 @@ const addWorkout = async (req, res) => {
 
     // add to the database
     try {
-      const workout = await Workout.create({ title, load, reps })
+      const user_id = req.user._id;
+      console.log(user_id);
+      const workout = await Workout.create({ title, load, reps, user_id })
       res.status(200).json(workout)
     } catch (error) {
       res.status(400).json({ error: error.message })

@@ -43,22 +43,25 @@ userSchema.statics.signup = async function(email, password) {
 }
 
 //staitc login method
-userSchema.statics.login = async function(email, password){
-    if(!email || !password){
-        throw Error('All Fields must be filled');
-    }
+userSchema.statics.login = async function(email, password) {
 
-    const user = await this.findOne({ email });
-    if(!user){
-        throw Error('Incorrect Email');
-    }
+  if (!email || !password) {
+    throw Error('All fields must be filled')
+  }
 
-    const match = await bcrypt.compare(password, user.password);
-    if(!match){
-        throw Error('Incorrect Password');
-    }
+  const user = await this.findOne({ email })
+  if (!user) {
+    throw Error('Incorrect email')
+  }
 
-    return user;
-} 
+  const match = await bcrypt.compare(password, user.password)
+  if (!match) {
+
+    console.log('HGJK')
+    throw Error('Incorrect password')
+  }
+
+  return user
+}
 
 module.exports = mongoose.model('User', userSchema)

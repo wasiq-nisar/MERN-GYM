@@ -12,6 +12,10 @@ const WorkoutSchema = new mongoose.Schema({
     load:{
         type: Number,
         required: true
+    },
+    user_id:{
+        type: String,
+        required: true
     }
     
 }, {timestamps: true})  //{timestamps: true} will automatically add a Created At property when a new document is added
